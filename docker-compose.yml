@@ -9,6 +9,7 @@ services:
     labels:
       caddy.reverse_proxy: "{{upstreams 80}}"
       caddy: files.antiftw.nl
+    restart: always
 networks:
   caddy:
     external: true
