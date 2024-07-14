@@ -1,11 +1,11 @@
-files.antiftw.nl {
+:80 {
     root * /srv
     file_server
 
     @boltImages {
         path /bolt-files
     }
-    rewrite @boltImages /bolt-images.zip
+    rewrite @boltImages /bolt-fixture-images.zip
 
     @publicKey {
         path /public-key
