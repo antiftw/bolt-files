@@ -1,0 +1,5 @@
+public/*
+# We should find a better place for this zip, but for now this repo is as good a place as any
+# When we remove it here, don't forget to add a .gitkeep to the public dir :)
+!public/bolt-fixture-images.zip
+!public/ubuntu-autoinstall.yml

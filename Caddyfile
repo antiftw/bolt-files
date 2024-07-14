@@ -1,0 +1,19 @@
+files.antiftw.nl {
+    root * /srv
+    file_server
+
+    @boltImages {
+        path /bolt-files
+    }
+    rewrite @boltImages /bolt-images.zip
+
+    @publicKey {
+        path /public-key
+    }
+    rewrite @publicKey /id_ed25519.pub
+
+    @ubuntuInstall {
+        path /ubuntu-install  
+    }
+    rewrite @ubuntuInstall /ubuntu-autoinstall.yml
+}

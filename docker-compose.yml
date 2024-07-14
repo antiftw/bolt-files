@@ -1,0 +1,11 @@
+services:
+  files:
+    image: caddy:alpine
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - ./public:/srv
+    networks:
+      - caddy
+    labels:
+      caddy.reverse_proxy: "{{upstreams 80}}"
+      caddy: files.antiftw.nl
