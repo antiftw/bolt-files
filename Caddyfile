@@ -7,13 +7,53 @@
     }
     rewrite @boltImages /bolt-fixture-images.zip
 
-    @publicKey {
-        path /public-key
+    @publicKeyLinux {
+        path /linux-key
     }
-    rewrite @publicKey /id_ed25519.pub
+    handle @publicKeyLinux {
+        header Content-Type text/plain
+        rewrite * /linux-key.pub
+        file_server
+    }
+
+    @publicKeyWindows {
+        path /windows-key
+    }
+    handle @publicKeyWindows {
+        header Content-Type text/plain
+        rewrite * /windows-key.pub
+        file_server
+    }
 
     @ubuntuInstall {
         path /ubuntu-install  
     }
     rewrite @ubuntuInstall /ubuntu-autoinstall.yml
+
+    header {
+        # XSS Protection
+        X-XSS-Protection "1; mode=block"
+
+        # Clickjacking Protection
+        X-Frame-Options "DENY"
+
+        # Content Sniffing Protection
+        X-Content-Type-Options "nosniff"
+
+        # Enforce HTTPS if youre using HTTPS, otherwise omit
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+        # Content Security Policy (adjust as needed)
+        Content-Security-Policy "default-src 'self'; script-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'self';"
+
+        # Referrer Policy
+        Referrer-Policy "no-referrer-when-downgrade"
+
+        # Remove Server Info
+        -Server
+    }
+
+    handle {
+        respond 404
+    }
 }
