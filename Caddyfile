@@ -5,7 +5,10 @@
     @boltImages {
         path /bolt-files
     }
-    rewrite @boltImages /bolt-fixture-images.zip
+    handle @boltImages {
+        rewrite * /bolt-fixture-images.zip
+        file_server
+    }
 
     @publicKeyLinux {
         path /linux-key
