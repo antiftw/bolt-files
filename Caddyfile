@@ -28,6 +28,15 @@
         file_server
     }
 
+    @publicKeyLaptop {
+        path /laptop-key
+    }
+    handle @publicKeyLaptop {
+        header Content-Type text/plain
+        rewrite * /laptop-key.pub
+        file_server
+    }
+
     @ubuntuInstall {
         path /ubuntu-install  
     }
