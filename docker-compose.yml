@@ -1,5 +1,6 @@
 services:
   files:
+    restart: unless-stopped
     image: caddy:alpine
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
